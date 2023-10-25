@@ -2,8 +2,9 @@ import { Router } from "express";
 import fs from "fs/promises";
 import path from "path";
 import * as uuid from "uuid";
+import getDirname from "../lib/utils.js";
 
-const dbPath = path.join(__dirname, "../db/db.json");
+const dbPath = path.join(getDirname(import.meta), "../db/db.json");
 
 // Initialize db as empty array
 let db = [];
