@@ -1,5 +1,5 @@
 {
-  "subdomain": "node-taker",
-  "install": "npm install",
-  "start": "node index.js"
+  "subdomain": "note-taker",
+  "install": "bun install",
+  "start": "bun index.js"
 }
