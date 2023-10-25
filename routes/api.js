@@ -27,4 +27,12 @@ router.post("/notes", (req, res) => {
   fs.writeFile(dbPath, JSON.stringify(db));
 });
 
+router.delete("/notes/:id", (req, res) => {
+  const noteIndex = db.findIndex((n) => n.id == req.params.id);
+  if (noteIndex === -1) return res.sendStatus(404);
+  db.splice(noteIndex, 1);
+  fs.writeFile(dbPath, JSON.stringify(db));
+  res.sendStatus(201);
+});
+
 export default router;
