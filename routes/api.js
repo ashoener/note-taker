@@ -1,8 +1,14 @@
 import { Router } from "express";
 import fs from "fs/promises";
 import path from "path";
-import db from "../db/db.json";
 import * as uuid from "uuid";
+
+const dbPath = path.join(__dirname, "../db/db.json");
+
+let db = [];
+try {
+  db = JSON.parse(await fs.readFile(dbPath));
+} catch (e) {}
 
 const router = Router();
 
@@ -18,7 +24,7 @@ router.post("/notes", (req, res) => {
   if (title.length === 0 || text.length === 0) return res.status(400).send();
   db.push({ title, text, id: uuid.v4() });
   res.sendStatus(201);
-  fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(db));
+  fs.writeFile(dbPath, JSON.stringify(db));
 });
 
 export default router;
