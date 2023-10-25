@@ -1,0 +1,5 @@
+{
+  "subdomain": "node-taker",
+  "install": "npm install",
+  "start": "node index.js"
+}
